@@ -1,0 +1,56 @@
+<div class="container container-owner">
+	<header class="weui-header">
+		<div class="weui-header-left">
+			<a href="javascript:history.back(-1)"><i class="iconfont icon-fanhui"></i></a>
+		</div>
+		<h1 class="weui-header-title">我的主页</h1>
+    </header>
+	<section class="content">
+		<div class="owner-info">
+			<div class="owner-info-c">
+				<div class="head">
+					<img src="images/defaultAvatar.png"/>
+					<p class="name">精灵<i class="icon-sex"></i></p>
+					<p class="modify-phone">157****8873</p>
+				</div>
+			</div>
+		</div>
+		<div class="weui_navbar" style="height:44px;">
+            <div class="weui_navbar_item active">我的订单</div>
+            <div class="weui_navbar_item">服务记录</div>
+        </div>
+		<div class="owner-tab">
+			<ul class="myorder-ul" ng-repeat="item in lists"> 
+				<li><a ui-sref="details" style="color:inherit;">
+					<div class="title"><span class="left">{{item.addtime}}</span><span class="right">{{item.orderType | switchStatus}}<span class="colorBrown">（待评价）</span></span></div>
+					<div class="restaurant-info">
+						<div class="restaurant-img"><img src="http://image.joindata.com/jdfile/c6f6dc66-0474-44dd-bf68-26af89b911d720161226104252.jpg"></div>
+						<div class="restaurant-con">
+							<h3>{{item.storeName}}</h3>
+							<p class="clearfix col999"><span class="left">共点了{{item.totalWeight}}份 / 就餐号Y006</span><span class="right">共计<b>¥{{item.totelprice}}</b></span>
+							</p>
+						</div>
+					</div>
+				</a></li>
+			</ul>
+        </div>
+          <div class="owner-tab">
+        	<div class="stat-box">
+        	 	<div class="stat-item">
+        	 		<p><span class="count">0</span>次</p1>
+        	 		<p class="col999">累计评价</p>
+        	 	</div>
+        	 	<div class="stat-item">
+        	 		<p><span class="count">0</span>次</p>
+        	 		<p class="col999">累计打赏</p>
+        	 	</div>
+        	 	<div class="stat-item">
+        	 		<p><span class="count">¥0</span></p>
+        	 		<p class="col999">累计支出赏金</p>
+        	 	</div>
+        	 </div>
+        	<ul class="myserver-ul" id="myserverUl">
+        	</ul>
+        </div>
+	</section>
+</div>

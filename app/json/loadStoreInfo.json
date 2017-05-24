@@ -1,0 +1,22 @@
+{
+    "message": "查询门店详情成功",
+    "model": {
+        "storeId": 150,
+        "brandId": 79,
+        "storeName": "麦当劳(新世界餐厅)",
+        "phone": "13298764321",
+        "logoUrl": "http://image.joindata.com/jdfile/c6f6dc66-0474-44dd-bf68-26af89b911d720161226104252.jpg",
+        "storeProv": "上海",
+        "storeCity": "上海市",
+        "storeDistrict": "浦东新区",
+        "storeAddress": "南京西路2-68号新世界城B1层",
+        "status": 2,
+        "storeDesc": "",
+        "startTime": "09:00",
+        "stopTime": "22:00",
+        "tasteName": "西北菜",
+        "brandName": "黄小抠",
+        "brandLogoUrl": "http://image.joindata.com/jdfile/6496e3a4-1d47-4f2f-a1f8-4a4d1ad495b120161031143132.jpg"
+    },
+    "code": "200"
+}

@@ -1,0 +1,117 @@
+<div class="weui-header"> 
+	<div class="weui-header-left"><a href="javascript:;"><i class="icon-x icon-x10"></i></a></div>
+	<h1 class="weui-header-title">订单确认</h1>
+</div>
+<div class="page scrollpage" id="iscroll-page" style="padding-bottom:20px;">
+<div id="scroll" class="scroll">
+	<div class="weui_cells weui_cells_form"> 
+        <div class="weui_cell">
+			<div class="weui_cell_bd weui_cell_primary"> <p>餐桌</p> </div>
+			<div>一号桌</div>
+		</div>
+        <div class="weui_cell" style="display:none;">
+			<div class="weui_cell_bd weui_cell_primary"> <p>就餐人数</p> </div>
+			<div class="person-num"></div>
+		</div>                  
+    </div>   
+    <div class="shopmenu-cart-list2">
+		<div class="shopmenu-cart-title"><span class="left">已点菜品（0份）</span><span class="clear-food right"><i class="icon-x icon-x9"></i>清空购物车</span></div>
+		<ul class="list-group">    
+		</ul>
+	</div>
+	<!--订单备注-->
+	<div class="weui_cells weui_cells_form">
+		<div id="remarks">
+	        <div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary">订单备注</div>
+			</div>
+	        <div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary" id="points">
+					<ul class="point-list" id="point-list"><li>不要辣</li><li>少放辣</li><li>多放辣</li></ul>
+					<span id="morepoint"><i>少放酱油</i><i>少放盐</i><i>多点醋</i><i>不要香菜</i><i>不要洋葱</i></span>
+				</div>
+			</div>     
+			<div class="plr12"><input id="otherpoint" placeholder="其他偏好或要求..."/></div>
+		 </div>
+	</div>
+	<!-- 发票 -->
+	<div id="eInvoice">
+    	<div class="row">
+    		<div class="left">是否需要发票</div>
+    		<div class="need-invoice">
+	    		<img src="/images/switch_close.png" class="switch" id="switchClose">
+	    		<img src="/images/switch_open.png" class="switch" id="switchOpen"  style="display: none;">
+            </div>
+    	</div>
+	   	<div class="show-invoice-type" style="display: none;">
+	    	<div class="invoice-type">
+	    		<div class="left col666">类型 :</div>
+	    		<div class="left" style="margin-left:40px;">
+	    			<div class="left" id="paperBox" style="margin-right:30px;">
+						<img src="/images/checkbox-tick.png" class="checkbox" id="typeCheckbox1">
+						<img src="/images/checkbox-default.png" class="checkbox" style="display: none;" id="typeCheckbox2"> &nbsp;<span id="paper">纸质</span>
+					</div>
+					<div class="left" id="elecBox">
+						<img src="/images/checkbox-default.png" class="checkbox" id="typeCheckbox3">
+						<img src="/images/checkbox-tick.png" class="checkbox" style="display: none;" id="typeCheckbox4"> &nbsp;<span id="electronics">电子</span>
+					</div>
+	    		</div>
+	    	</div>
+	    	<div class="invoice-type">
+	    		<div class="left col666">抬头 :</div>
+	    		<div class="left" style="margin-left:40px;">
+	    			<div class="left">
+						<img src="/images/checkbox-tick.png" class="checkbox" id="titleCheckbox1">
+						<img src="/images/checkbox-default.png" class="checkbox" style="display: none;" id="titleCheckbox2"> &nbsp;<span id="company">公司</span>
+					</div>
+					<div class="left" style="margin-left:30px;">
+						<img src="/images/checkbox-default.png" class="checkbox" id="titleCheckbox3">
+						<img src="/images/checkbox-tick.png" class="checkbox" style="display: none;" id="titleCheckbox4"> &nbsp;<span id="person">个人</span>
+					</div>
+
+	    		</div>
+	    	</div>
+	    	<div style="padding-bottom: 16px;">
+	    		<input type="text" placeholder="输入发票抬头详情" class="invoice-input" id="invoiceHeader" maxlength="50">
+	    	</div>
+	    	<div style="padding-bottom: 16px;display: none;" id="email">
+	    		<input type="text" placeholder="输入电子发票邮箱" class="invoice-input" id="emailInput" maxlength="100">
+	    	</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+<div id="card-bottom">
+	<div class="plr12">
+	<div class="left price-info">
+		<span class="font13 block">应付：<span class="price font18 colorg">¥0</span></span>
+		<span class="font12 block">已点11份</span>
+	</div>
+	<a href="javascript:void(0);" class="weui_btn bg-org right commit-btn">微信支付</a>	
+	</div>
+</div>
+
+<!---弹窗验证手机号-->
+<div class="phonenumber-post js-layer parentlayer">
+	<div class="cancle-btn js-cancle"></div>
+	<h3>请验证手机号提交订单</h3>
+	<ul class="phonenumber-ul">
+		<li><input class="phone" placeholder="请输入手机号" type="tel"></li>
+		<li class="clearfix"><input class="code left" placeholder="请输入验证码" type="tel"><a href="javascript:;" class="weui_btn bg-org right" id="sendTwoCode">获取验证码</a>	</li>
+	</ul>
+	<div class="plr15"><a href="javascript:void;" class="weui_btn bg-org close-btn">确 定</a></div>
+</div>
+<!--删除订单提醒 -->
+<div class="toast parentlayer hide clearFood">
+	<div class="weui_dialog weui_dialog_visible">
+		<div class="weui_dialog_hd">
+			<strong class="weui_dialog_title">确定要清空购物车吗?</strong>
+		</div>
+		<div class="weui_dialog_b">
+			<a href="javascript:;" class="weui_btn_dialog default left js-cancle">取消</a>
+			<a href="javascript:void(0)" class="weui_btn_dialog primary right">确定</a>
+		</div>
+	</div>
+</div>
+<div class="global-mask layout" style="display:none;"></div>

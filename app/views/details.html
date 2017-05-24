@@ -1,0 +1,84 @@
+<div class="weui-header weui-header2"> 
+	<div class="weui-header-left"><a id="btnBack" class="btnBack" href="javascript:history.back()" style="color:#fff;"><i class="iconfont icon-fanhui"></i></a></div>
+	<h1 class="weui-header-title">订单详情</h1>
+</div>	
+<div class="page scrollpage">
+	<div class="scroll">
+		<div class="order-post-state">
+			<div class="order order1">
+				<i class="order-i order-i1"></i>
+				<dl class="orderdl">
+					<dt id="order-status">订单已支付</dt>
+				</dl>
+			</div>
+		</div>
+		<div class="plr12">
+			<div class="order-con">
+				<div class="order-state">
+					<p class="clearfix"><span class="head"><img ng-src="{{data.headUrl}}"/></span><span class="font16">{{data.username}}</span><span class="num">4人</span></p>
+					<div class="table-number">
+						<span class="line-left"></span><span class="text">就餐号</span><span class="line-right"></span>
+					</div>
+					<div class="dish-number" ng-show="data.eatNumber!=''">{{data.eatNumber}}</div>
+					<div class="dish-number" ng-show="data.eatNumber==''">---</div>
+					<div class="order-state-bg"></div>
+				</div>
+				<div class="order-list">
+					<div class="title">订单菜品</div>
+					<table class="tb menus-table">
+						<tbody>
+							<tr ng-repeat="item in data.orderItemList">
+								<td class="td1">{{item.itemName}}</td>
+								<td class="td2">x{{item.number}}</td>
+								<td class="td3">¥{{item.money}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="favorable-detail" ng-show="data.activityName!=''">
+						<div class="clearfix discount-box">
+							<span class="right" style="font-size:15px;">- ¥{{data.paidDiscountMoney}}</span>
+							<span id="youhui" class="favorable-name color999">{{data.activityName}}</span>
+						</div>
+					</div>
+					<div class="favorable-title" ng-show="data.activityName!=''">
+						<span class="right">实付&nbsp;&nbsp;<span class="colorg" style="font-size:15px;">¥{{data.paidMoney}}</span></span><span class="color999">合计 ¥<span style="font-size:15px;">{{data.totelprice}}</span></span>
+						<span class="already-discount">已优惠¥{{data.paidDiscountMoney}}</span>
+					</div>
+					<div class="favorable-title" ng-show="data.activityName==''">
+						<span class="color999">合计 ¥<span style="font-size:15px;">{{data.totelprice}}</span></span>
+					</div>
+				</div>
+			</div>	
+	    </div>
+		<div class="order-info-box">
+			<h3>订单信息</h3>
+			<div class="info-text">
+				<span class="text">订单编号：</span><span class="info">{{data.orderNo}}</span>
+			</div>
+			<div class="info-text">
+				<span class="text">下单时间：</span><span class="info">{{data.addtime}}</span>
+			</div>
+			<div class="info-text">
+				<span class="text">支付方式：</span><span class="info">暂未支付</span>
+			</div>
+			<div class="info-text" ng-show="data.invoiceType!=0">
+				<span class="text">发票类型：</span><span class="info">{{data.invoiceType | invoiceTypeFilter}}</span>
+			</div>
+			<div class="info-text" ng-show="data.invoiceHeader!=''">
+				<span class="text">发票抬头：</span><span class="info">{{data.invoiceHeader}}</span>
+			</div>
+			<div class="info-text" ng-show="data.email!=''">
+				<span class="text">发票邮箱：</span><span class="info">{{data.email}}</span>
+			</div>
+		</div>
+		<div class="ad-box" id="ad-box" ng-show="advertise.imageUrl!=''">
+			<a ng-href="{{advertise.adUrl}}"><img alt="{{advertise.name}}" ng-src="{{advertise.imageUrl}}" /></a>
+		</div>
+		<img src="/images/wx.jpg" width="100%"/>
+	</div>
+</div>
+<div id="card-bottom">
+	<div class="plr12">
+		<a ui-sref="comment" class="weui_btn bg-org per-btn-100">菜品评价</a>
+	</div>
+</div>

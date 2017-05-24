@@ -1,0 +1,144 @@
+<div class="loadimg" id="loadimg" style="display: none;"></div>
+<div class="weui-header">
+	<div class="weui-header-left"><a href="javascript:;" ui-sref="mycenter" id="mycenter"><i class="iconfont icon-icon"></i></a></div>
+	<div class="weui-header-right">
+		<a class="ordernames" id="alreadyOrders" ui-sref="alreadyOrder"><i class="iconfont icon-order"></i> 已点订单</a>
+	</div> 
+</div>
+<ul class="tab-bar">
+	<li ng-class="{'tab-bar-on':isList}" ng-click="isList=true"><span>菜单列表</span></li>
+	<li ng-click="isList=false" ng-class="{'tab-bar-on':!isList}"><span>餐厅详情</span></li>
+</ul>
+<div class="tab-con clearfix" ng-show="isList">
+	<div id="shopmenu-category" class="scrollpage scroll-active">
+		<ul class="list-group list-group1">
+			<li ng-repeat="(index,item) in dishesList" ng-class="{'list-item':true,'active':currentIndex==index}" ng-click="selectMenu(index,$event)">
+				<a href="javascript:;">{{item.dishesSortName}}</a><em class="cart-count" ng-show="item.submenuCount&&item.submenuCount>0">{{item.submenuCount}}</em>
+			</li>
+		</ul>
+	</div>
+	<!--菜单列表开始-->
+	<div id="shopmenu-list" class="shopmenu-list">
+		<div id="scroller">
+			<ul class="listgroup" ng-repeat="item in dishesList" >
+				<li class="list-title">{{item.dishesSortName}}</li>
+				<li class="list-item item-img" ng-repeat="subitem in item.list">
+					<div class="wrap">
+						<div class="list-img">
+							<img ng-src="{{subitem.imgUrl?subitem.imgUrl:'/images/nodish.png'}}" width="50" height="50">
+						</div>
+						<div class="list-content">
+							<h4 class="title">{{subitem.dishesName}}</h4>
+							<p class="description">月售<strong>{{subitem.soldNumber}}</strong>{{subitem.units}}<span class="hide priceall"></span></p>
+							<p class="price-p"><b>￥</b><strong class="price">{{subitem.price}}</strong><span class="units"><i>/</i>{{subitem.units}}</span></p>
+						</div>
+					</div>
+					<div class="item-add">
+						<span class="btn -minus" ng-click="decreaseDish(subitem)" ng-show="subitem.count&&subitem.count!=0"> <i class="iconfont icon-jianhao inner"></i></span>
+						<span class="item-count" ng-show="subitem.count&&subitem.count!=0">{{subitem.count}}</span>
+						<span class="btn -plus ball" ng-click="addDish(subitem,$event);"> <i class="iconfont icon-jiahao"></i></span>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="list-title-dis">图片仅供参考 菜品请以实物为准</div>
+		</div>
+	</div>
+	<!--菜单列表结束-->
+	<div id="shopmenu-cart-list" class="shopmenu-cart-list" ng-show="showCart">
+		<div class="shopmenu-cart-title"><span class="left">桌号11</span><span class="right" ng-click="showClearBox()"><i class="icon-x icon-x9"></i>清空购物车</span></div>
+		<div id="cart-list-bottom" class="cart-list-bottom">
+			<ul class="list-group">
+				<li class="cl-item" ng-repeat="item in cartList">
+					<div class="cl-r1">{{item.dishesName}}</div>
+					<div class="cl-r3">￥<span>{{item.price}}</span></div>
+					<div class="cl-r2">
+						<div class="item-add">
+							<span class="btn -minus" ng-click="decreaseDish(item)" ng-show="item.count&&item.count>0"><i class="iconfont icon-jianhao inner"></i></span>
+							<span class="item-count" ng-show="item.count&&item.count>0">{{item.count}}</span>
+							<span class="btn -plus" ng-click="addDish(item,$event)"><i class="iconfont icon-jiahao"></i></span>
+						</div>
+					</div>
+					<div class="cl-r4"></div>
+				</li>
+			</ul>
+		</div>
+	</div>	
+	<div id="shopmenu-cart-bar" class="shopmenu-cart-bar" >
+		<div ng-class="{'row-num':true,'bigsmall':showAnimate}" ng-click="showCartList()"><i class="iconfont icon-iconfontshopcar" style="color:#fff;font-size:24px;"></i><em class="cart-count num" ng-show="sumCount>0">{{sumCount}}</em></div>
+		<div class="row-cart">
+			<div class="price-info">
+				<div class="cart-price zongjia" ng-show="sumCount==0"><span>购物车空空如也</span></div>
+				<div class="cart-premium" ng-show="sumCount>0">合计:{{sumPrice.toFixed(2)}}元</div>
+			</div>
+		</div>
+		<a ng-class="{'row-status':true,'cb-disable':sumCount==0}" href="javascript:void(0)" ng-click="nextClick()">下一步</a>
+	</div>
+	<div class="ball-container">
+        <div ng-repeat="ball in balls" ng-animate="enter">
+            <div v-show="ball.show" class="ball">
+              <div class="inner inner-hook"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-con" ng-show="!isList">
+	<div class="index-tab-3">
+		<ul class="scroll">
+			<li class="weui_panel weui_panel_access">
+				<div class="weui_panel_bd">
+					<div href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+						<div class="weui_media_hd">
+							<img class="weui_media_appmsg_thumb" id="storeImgUrl" alt="" ng-src="{{info.logoUrl}}">
+						</div>
+						<div class="weui_media_bd">
+							<h4 class="weui_media_title"><span class="restaurant-dish" id="span_storeName">{{info.storeName}}</span></h4>
+						</div>
+					</div>
+				</div>  
+			</li> 
+			<li class="weui_cells">
+                <div class="weui_cell">
+					<div class="weui_cell_hd"><i class="iconfont icon-address colorgray"></i></div>
+					<div class="weui_cell_bd weui_cell_primary">
+						<p id="span_storeAddress">{{info.storeAddress}}</p>
+					</div>
+				</div>
+				<div class="weui_cell">
+					<div class="weui_cell_hd"><i class="iconfont icon-boda colorgray"></i></div>
+					<div class="weui_cell_bd weui_cell_primary">
+						<p style="color:#333">{{info.phone}}</p>
+					</div>
+				</div>
+			</li>	
+			<li class="weui_cells">
+                <div class="weui_cell">
+					<div class="weui_cell_bd weui_cell_primary">
+						<p>营业时间：{{info.startTime}} -- {{info.stopTime}}</p>
+					</div>
+					<div class="weui_cell_ft" id="span_startime_and_stoptime"></div>
+				</div>
+				<div class="weui_media_box weui_media_text" style="padding-left:12px;">
+                    <h4 class="weui_media_title" style="font-size:15px;">门店介绍：</h4>
+                    <p class="weui_media_desc50" id="span_storeDesc">
+					</p>
+                </div>
+			</li>	
+		</ul>
+	</div>	
+</div>
+<!--清除订单提醒 -->
+<div class="toast parentlayer clearFood" ng-show="showClearCart" style="position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000000;">
+	<div class="weui_dialog weui_dialog_visible">
+		<div class="weui_dialog_hd">
+			<strong class="weui_dialog_title">确认清空购物车吗?</strong>
+		</div>
+		<div class="weui_dialog_b" style="padding:30px 90px 50px;">
+			<a href="javascript:;" class="weui_btn_dialog default left">取消</a>
+			<a href="javascript:void(0)" class="weui_btn_dialog primary right" ng-click="clearCart()">确定</a>
+		</div>
+	</div>
+</div>
+<!--遮罩层-->
+<div class="global-mask layout" ng-show="showCart || showClearCart"></div>
+

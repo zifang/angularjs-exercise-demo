@@ -1,0 +1,1 @@
+appconfig = {"apiUrl":"http://localhost:9000/"}

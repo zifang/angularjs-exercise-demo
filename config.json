@@ -1,0 +1,8 @@
+{
+  "development": {
+    "apiUrl": "http://localhost:9000/"
+  },
+  "production": {
+    "apiUrl": "http://localhost:9000/"
+  }
+}

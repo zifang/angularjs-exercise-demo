@@ -1,0 +1,25 @@
+<div class="container container-owner">
+  <header class="weui-header">
+    <div class="weui-header-left">
+      <a href="javascript:history.back(-1)"><i class="iconfont icon-fanhui"></i></a>
+    </div>
+    <h1 class="weui-header-title">已点订单</h1>
+  </header>
+  <section class="content">
+      <ul class="myorder-ul">
+        <li ng-repeat="item in lists"><a href="javascript:;" style="color:inherit;" ui-sref="details({orderId:{{item.orderId}},storeId:{{item.storeId}},token:'1d7afc7b-bf0f-4c6d-ac78-8fd1fe41713764540001',orderType:4})">
+          <div class="title"><span class="left">{{item.addtime}}</span><span class="right colorBrown">{{item.orderType | switchStatus}}</span></div>
+          <div class="restaurant-info">
+          <div class="restaurant-img">
+            <img ng-src="{{item.storeLogoUrl}}">
+          </div>
+          <div class="restaurant-con">
+            <h3>{{item.storeName}}</h3>
+            <p class="clearfix col999"><span class="left">共点了{{item.totalWeight}}份</span><span class="right">共计<b>¥{{item.totelprice}}</b></span></p>
+          </div>
+        </div></a>
+        </li>
+      </ul>
+  </section>
+</div>
+
